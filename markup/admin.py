@@ -25,10 +25,10 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'file', 'category_name', 'category_id')
 
     def category_name(self, obj):
-        return obj.category.name
+        return obj.folder.name
 
     def category_id(self, obj):
-        return obj.category.id
+        return obj.folder.id
 
     category_name.admin_order_field = 'Category name'  # Allows column order sorting
     category_name.short_description = 'Category Name'  # Renames column head

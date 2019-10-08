@@ -25,14 +25,14 @@ class FolderSerializer(serializers.ModelSerializer):
         return False
 
 
-class CategorySerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField()
-    description = serializers.CharField()
-
-    class Meta:
-        model = Category
-        fields = ('id', 'name', 'description',)
+# class CategorySerializer(serializers.ModelSerializer):
+#     id = serializers.IntegerField(read_only=True)
+#     name = serializers.CharField()
+#     description = serializers.CharField()
+#
+#     class Meta:
+#         model = Category
+#         fields = ('id', 'name', 'description',)
 
 
 class LabelSerializer(serializers.ModelSerializer):
