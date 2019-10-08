@@ -48,7 +48,7 @@ class Folder(models.Model):
         return f'{self.id}:{self.name}'
 
 
-def file_category_path(instance, filename):
+def file_save_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'category_{0}/{1}'.format(instance.category.id, filename)
 
@@ -56,7 +56,7 @@ def file_category_path(instance, filename):
 class Image(models.Model):
     name = models.CharField(max_length=150)
     folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='images')
-    file = models.FileField(blank=False, null=False, upload_to=file_category_path)
+    file = models.FileField(blank=False, null=False, upload_to=file_save_path)
 
     def __str__(self):
         return f'{self.file.name}'
