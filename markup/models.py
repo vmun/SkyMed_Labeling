@@ -50,7 +50,7 @@ class Folder(models.Model):
 
 def file_category_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'category_{0}/{1}'.format(instance.category.id, filename)
+    return 'folder_{0}/{1}'.format(instance.folder.id, filename)
 
 
 class Image(models.Model):
