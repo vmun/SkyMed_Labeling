@@ -61,7 +61,7 @@ class LabelAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'date_created', 'created_by', 'text', 'image', 'parent')
+    list_display = ('id', 'date_created', 'created_by', 'text', 'image',)
 
 
 @admin.register(Folder)

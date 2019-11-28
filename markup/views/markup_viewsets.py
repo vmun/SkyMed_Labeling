@@ -14,7 +14,7 @@ actions_logger = logging.getLogger('actions_logger')
 class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     @action(methods=['GET'], detail=True)
     def polygons(self, request, pk):

@@ -24,7 +24,11 @@ urlpatterns = [
 ]
 router = routers.DefaultRouter()
 router.register('folders', FolderViewSet, base_name='folders')
-# router.register('images', ImageViewSet, base_name='api')
+router.register('images', ImageViewSet, base_name='images')
+router.register('allowed_folders', AllowedFolderViewSet, base_name='allowed_folders')
+router.register('polygons', PolygonViewSet, base_name='polygons')
+router.register('labels', LabelViewSet, base_name='labels')
+router.register('comments', CommentViewSet, base_name='comments')
 router.register('register', UserViewSet, base_name='register')
 router.register('profiles', ProfileViewSet, base_name='profiles')
 urlpatterns += router.urls

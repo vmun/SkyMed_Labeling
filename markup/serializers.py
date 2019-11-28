@@ -38,8 +38,9 @@ class AllowedFolderSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
 
     class Meta:
-        model = Folder
+        model = AllowedFolder
         fields = ('id', 'user', 'folder',)
+
 
 class LabelSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -52,12 +53,12 @@ class LabelSerializer(serializers.ModelSerializer):
 
 class PolygonSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    attributes = serializers.CharField(required=False, allow_blank=True)
+    text = serializers.CharField(required=False, allow_blank=True)
     name = serializers.SerializerMethodField()
 
     class Meta:
         model = Polygon
-        fields = ('id', 'name', 'label', 'attributes', 'points', 'image')
+        fields = ('id', 'name', 'label', 'text', 'points', 'image')
 
     def get_name(self, obj):
         return obj.label.name
@@ -80,6 +81,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
+    text = serializers.CharField(required=True)
     created_by = UserSerializer(read_only=True)
     date_created = serializers.DateTimeField(read_only=True)
 

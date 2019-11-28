@@ -24,7 +24,7 @@ class Profile(models.Model):
     user = models.OneToOneField(MainUser, on_delete=models.CASCADE)
     bio = models.CharField(max_length=500, default='none')
     address = models.CharField(max_length=300, default='none')
-    avatar = models.FileField(default='media/Default/Default.png')
+    avatar = models.FileField(default='Default/Default.png')
 
     class Meta:
         verbose_name = 'Profile'
@@ -57,14 +57,8 @@ class AllowedFolder(models.Model):
         unique_together = ('user', 'folder',)
 
 
-def file_save_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'folder_{0}/{1}'.format(instance.folder.id, filename)
-
-
 class Image(models.Model):
     name = models.CharField(max_length=150)
-    description = models.CharField(max_length=500)
     folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='images')
     file = models.FileField(upload_to=task_document_path, validators=[validate_file_size, validate_extension])
 
@@ -121,8 +115,6 @@ class CommentManager(models.Manager):
 
 class Comment(Attachments):
     image = models.ForeignKey(Image, on_delete=models.CASCADE, default=1, related_name='comments')
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='subcomments', blank=True,
-                               null=True)
     objects = CommentManager()
 
     class Meta:

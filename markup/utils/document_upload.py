@@ -18,7 +18,7 @@ def validate_extension(value):
 
 
 def task_document_path(instance, filename):
-    return f'images/{date.today()}/{filename}'
+    return f'markup/images/{date.today()}/{filename}'
 
 
 # def task_delete_path(document):
