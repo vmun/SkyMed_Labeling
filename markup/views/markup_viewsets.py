@@ -14,8 +14,7 @@ actions_logger = logging.getLogger('actions_logger')
 class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
-
-    # permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, )
 
     @action(methods=['GET'], detail=True)
     def polygons(self, request, pk):
@@ -44,3 +43,21 @@ class ImageViewSet(viewsets.ModelViewSet):
         comment = Image.objects.get(id=pk).comments.get(created_by=self.request.user)
         serializer = FolderSerializer(comment)
         return Response(serializer.data)
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class PolygonViewSet(viewsets.ModelViewSet):
+    queryset = Polygon.objects.all()
+    serializer_class = PolygonSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class LabelViewSet(viewsets.ModelViewSet):
+    queryset = Label.objects.all()
+    serializer_class = LabelSerializer
+    permission_classes = (IsAdminUser,)

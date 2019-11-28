@@ -44,3 +44,9 @@ class FolderViewSet(viewsets.ModelViewSet):
         images = Folder.objects.get(id=pk).images.all()
         serializer = ImageSerializer(images, many=True)
         return Response(serializer.data)
+
+
+class AllowedFolderViewSet(viewsets.ModelViewSet):
+    queryset = AllowedFolder.objects.all()
+    serializer_class = AllowedFolderSerializer
+    permission_classes = (IsAdminUser,)
