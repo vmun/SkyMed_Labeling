@@ -26,32 +26,20 @@ class ProfileSerializer(serializers.ModelSerializer):
         return ''
 
 
-
 class FolderSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField()
-    description = serializers.CharField()
 
     class Meta:
         model = Folder
-        fields = ('id', 'name', 'description',)
-
-    def get_extra(self, obj):
-        categories = obj.categories.filter(allowed=self.context.get('request').user)
-        if categories:
-            return True
-        return False
+        fields = ('id', 'name', 'description', 'type', 'parent')
 
 
-# class CategorySerializer(serializers.ModelSerializer):
-#     id = serializers.IntegerField(read_only=True)
-#     name = serializers.CharField()
-#     description = serializers.CharField()
-#
-#     class Meta:
-#         model = Category
-#         fields = ('id', 'name', 'description',)
+class AllowedFolderSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
 
+    class Meta:
+        model = Folder
+        fields = ('id', 'user', 'folder',)
 
 class LabelSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)

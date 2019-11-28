@@ -15,8 +15,16 @@ def user_created(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
         user_logger.info(f"{instance} registered!\n")
-        print(instance)
 
+@receiver(post_save, sender=Folder)
+def folder_created(sender, instance, created, **kwargs):
+    if created:
+        actions_logger.info(f"Folder {instance} created!\n")
+
+@receiver(post_save, sender=AllowedFolder)
+def permission_created(sender, instance, created, **kwargs):
+    if created:
+        actions_logger.info(f"{instance.user} was given access to {instance.folder}!\n")
 
 # @receiver(pre_delete, sender=Task)
 # def task_deleted(sender, instance, **kwargs):

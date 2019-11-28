@@ -1,11 +1,11 @@
-# from markup.views.user_viewsets import UserViewSet
-from .views import FolderViewSet, ImageViewSet
+from .views import *
 from rest_framework import routers
 
 urlpatterns = [
 ]
 router = routers.DefaultRouter()
-# router.register('folders', FolderViewSet, base_name='api')
+router.register('folders', FolderViewSet, base_name='folders')
 # router.register('images', ImageViewSet, base_name='api')
-# router.register('register', UserViewSet, base_name='register')
+router.register('register', UserViewSet, base_name='register')
+router.register('profiles', ProfileViewSet, base_name='profiles')
 urlpatterns += router.urls

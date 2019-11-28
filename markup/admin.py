@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from markup.models import Image, Polygon, Comment, Label, Folder, Profile, MainUser
+from markup.models import *
 
 
 class InlineProfile(admin.StackedInline):
@@ -10,14 +10,26 @@ class InlineProfile(admin.StackedInline):
     can_delete = False
 
 
+class InlineFolders(admin.StackedInline):
+    model = AllowedFolder
+    verbose_name = 'folder'
+    verbose_name_plural = 'folders'
+    can_delete = False
+
+
 @admin.register(MainUser)
 class MainUserAdmin(UserAdmin):
-    inlines = [InlineProfile, ]
+    inlines = [InlineProfile, InlineFolders]
 
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('id', 'bio', 'address', 'user', 'avatar')
+
+
+@admin.register(AllowedFolder)
+class FolderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'folder', 'user',)
 
 
 @admin.register(Image)

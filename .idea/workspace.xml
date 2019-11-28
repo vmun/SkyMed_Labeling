@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af9986d4-2bbe-4207-a4cc-74a070d02fd8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/markup/views/markup_viewsets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/markup/views/path_viewsets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SkyMed_Labeling/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SkyMed_Labeling/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markup/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markup/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markup/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markup/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markup/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markup/utils/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/utils/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markup/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/views/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markup/views/user_viewsets.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/views/user_viewsets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markup/views/viewsets.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/views/viewsets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/views/viewsets.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +115,7 @@
       <workItem from="1573895143368" duration="2295000" />
       <workItem from="1574246469268" duration="293000" />
       <workItem from="1574496543745" duration="604000" />
-      <workItem from="1574934447472" duration="9245000" />
+      <workItem from="1574934447472" duration="15358000" />
     </task>
     <servers />
   </component>
