@@ -2,9 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af9986d4-2bbe-4207-a4cc-74a070d02fd8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/SkyMed_Labeling.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SkyMed_Labeling.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/markup/utils/ChoiceFields.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/markup/utils/document_upload.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/markup/utils/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/markup/views/user_viewsets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkyMed_Labeling/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SkyMed_Labeling/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkyMed_Labeling/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SkyMed_Labeling/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/folder_4/9Mgz_BKfzhk_vzYt1jB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/analysis_tools/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_tools/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/default_media/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/logging/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/migrations/0002_auto_20191007_2325.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/migrations/0003_auto_20191007_2325.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/migrations/0004_auto_20191007_2326.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,14 +43,25 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RsYge888XqRuMJXmvzcFpoYWQq" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Adv Django/Advanced-Django-2019/Week4" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/media" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Angi\Desktop\Autumn 2019\SkyMed_Labeling\media" />
+      <recent name="C:\Users\Angi\Desktop\Autumn 2019\SkyMed_Labeling\markup\utils" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Angi\Desktop\Autumn 2019\SkyMed_Labeling" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -90,6 +118,14 @@
       <workItem from="1571834743074" duration="613000" />
       <workItem from="1571898225512" duration="1197000" />
       <workItem from="1572325056496" duration="87000" />
+      <workItem from="1572332851294" duration="1387000" />
+      <workItem from="1572932417956" duration="2440000" />
+      <workItem from="1572950223961" duration="1535000" />
+      <workItem from="1573021991699" duration="1928000" />
+      <workItem from="1573895143368" duration="2295000" />
+      <workItem from="1574246469268" duration="293000" />
+      <workItem from="1574496543745" duration="604000" />
+      <workItem from="1574934447472" duration="6672000" />
     </task>
     <servers />
   </component>

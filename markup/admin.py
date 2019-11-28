@@ -17,7 +17,7 @@ class MainUserAdmin(UserAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'bio', 'address', 'user',)
+    list_display = ('id', 'bio', 'address', 'user', 'avatar')
 
 
 @admin.register(Image)
@@ -39,7 +39,7 @@ class ImageAdmin(admin.ModelAdmin):
 
 @admin.register(Polygon)
 class PolygonAdmin(admin.ModelAdmin):
-    list_display = ('id', 'date_created', 'label', 'image', 'created_by', 'attributes')
+    list_display = ('id', 'date_created', 'label', 'image', 'created_by', 'text')
 
 
 @admin.register(Label)
@@ -49,9 +49,9 @@ class LabelAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'date_created', 'created_by', 'text', 'image')
+    list_display = ('id', 'date_created', 'created_by', 'text', 'image', 'parent')
 
 
 @admin.register(Folder)
 class FolderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'description', 'folder',)
+    list_display = ('id', 'name', 'description', 'parent', 'type')

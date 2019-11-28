@@ -4,9 +4,36 @@ from markup.models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
     class Meta:
-        model = User
-        fields = ('id', 'username', 'email',)
+        model = MainUser
+        fields = ('id', 'username', 'password', 'email',)
+        write_only_fields = ('password',)
+
+    def create(self, validated_data):
+        user = MainUser.objects.create_user(**validated_data)
+
+        profile = Profile.objects.create(
+            user=user
+        )
+        profile.save()
+        return user
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    origin = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Profile
+        fields = ('id', 'origin', 'bio', 'address',)
+
+    def get_origin(self, obj):
+        if obj.user is not None:
+            return obj.user.username + " with id " + str(obj.user.id)
+        return ''
+
 
 
 class FolderSerializer(serializers.ModelSerializer):
