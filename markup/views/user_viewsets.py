@@ -16,7 +16,3 @@ logger = logging.getLogger('user_logger')
 class UserViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = MainUser.objects.all()
     serializer_class = UserSerializer
-
-    def perform_create(self, serializer):
-        serializer.save()
-        logger.info(f"{serializer.data.get('username')} registered!\n")

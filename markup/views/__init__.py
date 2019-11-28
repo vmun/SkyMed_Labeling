@@ -1,1 +1,1 @@
-from .viewsets import FolderViewSet, ImageViewSet
+from .viewsets import *

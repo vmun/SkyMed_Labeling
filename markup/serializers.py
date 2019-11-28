@@ -11,15 +11,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'password', 'email',)
         write_only_fields = ('password',)
 
-    def create(self, validated_data):
-        user = MainUser.objects.create_user(**validated_data)
-
-        profile = Profile.objects.create(
-            user=user
-        )
-        profile.save()
-        return user
-
 
 class ProfileSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)

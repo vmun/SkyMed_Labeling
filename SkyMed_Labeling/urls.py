@@ -21,8 +21,7 @@ from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
-from rest_framework_jwt.views import obtain_jwt_token
-
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from markup import views
 
@@ -36,8 +35,9 @@ schema_view = get_schema_view(
     permission_classes=(permissions.IsAdminUser,)
 )
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('markup.urls')),
-    path('api/token/', obtain_jwt_token, name='api_token_auth'),
-    url(r'^help/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('admin/', admin.site.urls),
+                  path('api/', include('markup.urls')),
+                  path('api/token/', obtain_jwt_token, name='api_token_auth'),
+                  url(r'^api-token-refresh/', refresh_jwt_token),
+                  url(r'^help/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

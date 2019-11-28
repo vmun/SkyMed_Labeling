@@ -1,17 +1,19 @@
+import logging
+
 from rest_framework.response import Response
-from rest_framework import viewsets
-from rest_framework import mixins
-from rest_framework import status
+from rest_framework import viewsets, mixins, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
+from markup.serializers import *
+from markup.models import *
 
-from markup.serializers import CommentSerializer, FolderSerializer, ImageSerializer, LabelSerializer, PolygonSerializer, UserSerializer
-from markup.models import MainUser, Profile, Label, Folder, Image, Polygon, PolygonManager, Comment, CommentManager
-
+user_logger = logging.getLogger('user_logger')
+actions_logger = logging.getLogger('actions_logger')
 
 class FolderViewSet(viewsets.ModelViewSet):
     queryset = Folder.objects.all()
     serializer_class = FolderSerializer
+
     # permission_classes = (IsAuthenticated, )
 
     @action(methods=['GET'], detail=False)
@@ -46,6 +48,7 @@ class FolderViewSet(viewsets.ModelViewSet):
 class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
+
     # permission_classes = (IsAuthenticated, )
 
     @action(methods=['GET'], detail=True)
@@ -75,5 +78,3 @@ class ImageViewSet(viewsets.ModelViewSet):
         comment = Image.objects.get(id=pk).comments.get(created_by=self.request.user)
         serializer = FolderSerializer(comment)
         return Response(serializer.data)
-
-

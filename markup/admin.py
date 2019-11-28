@@ -22,19 +22,19 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'file', 'category_name', 'category_id')
+    list_display = ('id', 'name', 'file', 'folder_name', 'folder_id')
 
-    def category_name(self, obj):
+    def folder_name(self, obj):
         return obj.folder.name
 
-    def category_id(self, obj):
+    def folder_id(self, obj):
         return obj.folder.id
 
-    category_name.admin_order_field = 'Category name'  # Allows column order sorting
-    category_name.short_description = 'Category Name'  # Renames column head
+    folder_name.admin_order_field = 'Folder name'  # Allows column order sorting
+    folder_name.short_description = 'Folder Name'  # Renames column head
 
-    category_id.admin_order_field = 'Category id'  # Allows column order sorting
-    category_id.short_description = 'Category id'  # Renames column head
+    folder_id.admin_order_field = 'Folder id'  # Allows column order sorting
+    folder_id.short_description = 'Folder id'  # Renames column head
 
 
 @admin.register(Polygon)
