@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, PermissionsMixin
 from markup.utils.ChoiceFields import *
 from markup.utils.document_upload import *
+from markup.utils.validators import *
 
 
 class MainUser(AbstractUser):

@@ -18,7 +18,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ('id', 'origin', 'bio', 'address',)
+        fields = ('id', 'origin', 'bio', 'address', 'avatar')
 
     def get_origin(self, obj):
         if obj.user is not None:
@@ -81,7 +81,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    text = serializers.CharField(required=True)
+    text = serializers.CharField(required=True, allow_blank=False)
     created_by = UserSerializer(read_only=True)
     date_created = serializers.DateTimeField(read_only=True)
 

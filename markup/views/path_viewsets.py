@@ -12,10 +12,18 @@ actions_logger = logging.getLogger('actions_logger')
 
 class FolderViewSet(viewsets.ModelViewSet):
     serializer_class = FolderSerializer
-    permission_classes = (IsAuthenticated,)
+
+    def get_permissions(self):
+        if self.action in ['destroy', 'update', 'create', 'partial_update']:
+            return [IsAdminUser(), ]
+        else:
+            return [IsAuthenticated(), ]
 
     def get_queryset(self):
-        return self.request.user.folders
+        if self.request.user.is_superuser:
+            return Folder.objects.all()
+        else:
+            return self.request.user.folders
 
     @action(methods=['GET'], detail=False)
     def my(self, request):
