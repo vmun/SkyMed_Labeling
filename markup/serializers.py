@@ -12,6 +12,14 @@ class UserSerializer(serializers.ModelSerializer):
         write_only_fields = ('password',)
 
 
+class PasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+
 class ProfileSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     origin = serializers.SerializerMethodField()

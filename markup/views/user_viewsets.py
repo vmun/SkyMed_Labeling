@@ -12,8 +12,35 @@ actions_logger = logging.getLogger('actions_logger')
 
 
 class UserViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
-    queryset = MainUser.objects.all()
     serializer_class = UserSerializer
+
+    def get_permissions(self):
+        if self.action in ['create']:
+            return []
+        else:
+            return [IsAuthenticated(), ]
+
+    def get_queryset(self):
+        if self.action in ['create']:
+            return MainUser.objects.all()
+        else:
+            return MainUser.objects.filter(user=self.request.user)
+
+    @action(methods=['Post'], detail=False)
+    def set_password(self, request):
+        serializer = PasswordSerializer(data=request.data)
+        user = self.request.user
+        if serializer.is_valid():
+            if not user.check_password(serializer.data.get('old_password')):
+                return Response({'old_password': ['Wrong password.']},
+                                status=status.HTTP_400_BAD_REQUEST)
+            # set_password also hashes the password that the user will get
+            user.set_password(serializer.data.get('new_password'))
+            user.save()
+            return Response({'status': 'password set'}, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors,
+                        status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProfileViewSet(viewsets.ReadOnlyModelViewSet):

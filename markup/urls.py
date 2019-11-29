@@ -29,6 +29,6 @@ router.register('allowed_folders', AllowedFolderViewSet, base_name='allowed_fold
 router.register('polygons', PolygonViewSet, base_name='polygons')
 router.register('labels', LabelViewSet, base_name='labels')
 router.register('comments', CommentViewSet, base_name='comments')
-router.register('register', UserViewSet, base_name='register')
+router.register('users', UserViewSet, base_name='users')
 router.register('profiles', ProfileViewSet, base_name='profiles')
 urlpatterns += router.urls
