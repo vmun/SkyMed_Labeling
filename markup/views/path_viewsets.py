@@ -1,4 +1,6 @@
 import logging
+
+from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework import viewsets, mixins, status
 from rest_framework.permissions import *
@@ -10,48 +12,29 @@ user_logger = logging.getLogger('user_logger')
 actions_logger = logging.getLogger('actions_logger')
 
 
-class FolderViewSet(viewsets.ModelViewSet):
+class FolderViewSet(mixins.RetrieveModelMixin,
+                    mixins.ListModelMixin,
+                    viewsets.GenericViewSet):
     serializer_class = FolderSerializer
-
-    def get_permissions(self):
-        if self.action in ['destroy', 'update', 'create', 'partial_update']:
-            return [IsAdminUser(), ]
-        else:
-            return [IsAuthenticated(), ]
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        if self.request.user.is_superuser:
-            return Folder.objects.all()
+        if self.action in ['list', ]:
+            return Folder.objects.filter(Q(participants=self.request.user) & Q(type=ROOT) & Q(parent=None))
         else:
-            return self.request.user.folders
+            return Folder.objects.filter(participants=self.request.user)
 
-    @action(methods=['GET'], detail=False)
-    def my(self, request):
-        # permission: auth
-        folders = Folder.objects.filter(allowed=self.request.user)
-        serializer = self.get_serializer(folders, many=True)
-        return Response(serializer.data)
-
-    @action(methods=['GET'], detail=True)
-    def subfolders(self, request, pk):
-        # permission: admin
-        subfolders = Folder.objects.get(id=pk).subfolders.all()
-        serializer = FolderSerializer(subfolders, many=True)
-        return Response(serializer.data)
-
-    @action(methods=['GET'], detail=True)
-    def my_subfolders(self, request, pk):
-        # permission: auth
-        subfolders = Folder.objects.get(id=pk).subfolders.filter(allowed=self.request.user)
-        serializer = FolderSerializer(subfolders, many=True)
-        return Response(serializer.data)
-
-    @action(methods=['GET'], detail=True)
-    def images(self, request, pk):
-        # permission: auth, have_access
-        images = Folder.objects.get(id=pk).images.all()
-        serializer = ImageSerializer(images, many=True)
-        return Response(serializer.data)
+    # @action(methods=['GET'], detail=True)
+    # def images(self, request, pk):
+    #     folder = Folder.objects.get(id=pk).prefetch_related('images')
+    #     images = folder.images
+    #     print(images)
+    #     serializer = ImageSerializer(data=images)
+    #
+    #     if serializer.is_valid():
+    #         print(serializer.data)
+    #         return Response(serializer.data)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class AllowedFolderViewSet(viewsets.ModelViewSet):

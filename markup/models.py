@@ -93,7 +93,6 @@ class Polygon(Attachments):
     label = models.ForeignKey(Label, on_delete=models.CASCADE, default=1)
     points = models.CharField(max_length=1000)
     image = models.ForeignKey(Image, on_delete=models.CASCADE, default=1, related_name='polygons')
-
     objects = PolygonManager()
 
     class Meta:

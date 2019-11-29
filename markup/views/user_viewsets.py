@@ -35,7 +35,6 @@ class UserViewSet(mixins.CreateModelMixin,
             if not user.check_password(serializer.data.get('old_password')):
                 return Response({'old_password': ['Wrong password.']},
                                 status=status.HTTP_400_BAD_REQUEST)
-            # set_password also hashes the password that the user will get
             user.set_password(serializer.data.get('new_password'))
             user.save()
             return Response({'status': 'password set'}, status=status.HTTP_200_OK)
@@ -49,7 +48,6 @@ class ProfileViewSet(mixins.RetrieveModelMixin,
                      mixins.ListModelMixin,
                      viewsets.GenericViewSet):
     serializer_class = ProfileSerializer
-    # queryset = Profile.objects.all()
     parser_classes = (MultiPartParser, FormParser, JSONParser,)
 
     def get_queryset(self):

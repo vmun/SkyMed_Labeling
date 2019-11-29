@@ -19,6 +19,9 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'password', 'email',)
         write_only_fields = ('password',)
 
+    def create(self, validated_data):
+        user = MainUser.objects.create_user(**validated_data)
+        return user
 
 class PasswordSerializer(serializers.Serializer):
     """
@@ -42,7 +45,38 @@ class ProfileSerializer(serializers.ModelSerializer):
         return ''
 
 
+class SubFolderSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Folder
+        fields = ('id', 'name', 'description', 'type',)
+
+
 class FolderSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    allowed = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Folder
+        fields = ('id', 'name', 'description', 'type', 'parent', 'allowed')
+
+    def get_allowed(self, obj):
+        print(obj)
+        print(obj.id)
+        user = self.context['request'].user
+        subfolders = Folder.objects.filter(
+            parent=obj, participants=user
+        )
+        print(subfolders)
+        return SubFolderSerializer(
+            subfolders,
+            many=True,
+            context={'request': self.context['request']}
+        ).data
+
+
+class AdminFolderSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
 
     class Meta:
@@ -98,9 +132,12 @@ class ImageSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     text = serializers.CharField(required=True, allow_blank=False)
-    created_by = UserSerializer(read_only=True)
     date_created = serializers.DateTimeField(read_only=True)
+    creator_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ('id', 'text', 'date_created', 'image', 'creator_name')
+
+    def get_creator_name(self, obj):
+        return obj.created_by.username
