@@ -22,10 +22,11 @@ class MainUser(AbstractUser):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(MainUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(MainUser, on_delete=models.CASCADE, related_name='profile')
     bio = models.CharField(max_length=500, default='none')
     address = models.CharField(max_length=300, default='none')
-    avatar = models.FileField(default='Default/Default.png')
+    avatar = models.FileField(upload_to=avatar_image_path, validators=[validate_file_size, validate_extension],
+                              default='Default/Default.png')
 
     class Meta:
         verbose_name = 'Profile'

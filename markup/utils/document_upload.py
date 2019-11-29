@@ -2,7 +2,9 @@ import os
 from datetime import date
 from SkyMed_Labeling import settings
 
-ALLOWED_EXTENSIONS = ['.jpg', '.png', ]
+
+def avatar_image_path(instance, filename):
+    return f'profiles/avatars/{date.today()}/{filename}'
 
 
 def task_document_path(instance, filename):

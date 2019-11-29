@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af9986d4-2bbe-4207-a4cc-74a070d02fd8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SkyMed_Labeling/custom_settings_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SkyMed_Labeling/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SkyMed_Labeling/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markup/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markup/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/utils/document_upload.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/utils/document_upload.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/utils/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/utils/validators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/markup/views/user_viewsets.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/views/user_viewsets.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -112,6 +116,11 @@
       <workItem from="1574496543745" duration="604000" />
       <workItem from="1574934447472" duration="22080000" />
       <workItem from="1575000089130" duration="6615000" />
+      <workItem from="1575012323168" duration="1565000" />
+      <workItem from="1575016406763" duration="599000" />
+      <workItem from="1575020995859" duration="5135000" />
+      <workItem from="1575027266048" duration="4102000" />
+      <workItem from="1575043565081" duration="1567000" />
     </task>
     <servers />
   </component>

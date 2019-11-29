@@ -3,6 +3,14 @@ from django.contrib.auth.models import User
 from markup.models import *
 
 
+class UserShortSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = MainUser
+        fields = ('id', 'username', 'first_name', 'email', 'is_superuser')
+
+
 class UserSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
 
