@@ -11,7 +11,7 @@ class InlineProfile(admin.StackedInline):
 
 
 class InlineFolders(admin.StackedInline):
-    model = AllowedFolder
+    model = AllowedImagePack
     verbose_name = 'folder'
     verbose_name_plural = 'folders'
     can_delete = False
@@ -27,9 +27,9 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('id', 'bio', 'address', 'user', 'avatar')
 
 
-@admin.register(AllowedFolder)
-class FolderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'folder', 'user',)
+@admin.register(AllowedImagePack)
+class AllowedImagePackAdmin(admin.ModelAdmin):
+    list_display = ('id', 'imagePack', 'user',)
 
 
 @admin.register(Image)
@@ -66,4 +66,9 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Folder)
 class FolderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'description', 'parent', 'type')
+    list_display = ('id', 'name', 'description', 'parent')
+
+
+@admin.register(ImagePack)
+class ImagePackAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'description', 'parent')

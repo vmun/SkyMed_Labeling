@@ -24,6 +24,7 @@ urlpatterns = [
 ]
 router = routers.DefaultRouter()
 router.register('folders', FolderViewSet, base_name='folders')
+router.register('image_packs', ImagePackViewSet, base_name='image_packs')
 # router.register('images', ImageViewSet, base_name='images')
 # router.register('allowed_folders', AllowedFolderViewSet, base_name='allowed_folders')
 # router.register('polygons', PolygonViewSet, base_name='polygons')

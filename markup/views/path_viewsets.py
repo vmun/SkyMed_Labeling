@@ -38,6 +38,36 @@ class FolderViewSet(mixins.RetrieveModelMixin,
 
 
 class AllowedFolderViewSet(viewsets.ModelViewSet):
-    queryset = AllowedFolder.objects.all()
-    serializer_class = AllowedFolderSerializer
+    queryset = AllowedImagePack.objects.all()
+    serializer_class = AllowedImagePackSerializer
     permission_classes = (IsAdminUser,)
+
+
+class ImagePackViewSet(viewsets.ModelViewSet):
+    serializer_class = ImagePackSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def get_queryset(self):
+        self.permission_classes = (IsAdminUser,)
+        self.check_permissions(self.request)
+        return ImagePack.objects.all()
+
+
+    @action(methods=['GET'], detail=False)
+    def allowed_folders(self, request):
+        allowed_folders = []
+        imagePacks = ImagePack.objects.filter(membership__user=self.request.user)
+        for pack in imagePacks:
+            folder = pack
+            while folder.parent:
+                allowed_folders.append(folder.parent_id)
+                folder = folder.parent
+        allowed_folders = Folder.objects.filter(id__in=allowed_folders)
+        serializer = FolderSerializer(allowed_folders, many=True)
+        return Response(serializer.data)
+
+    @action(methods=['GET'], detail=False)
+    def allowed(self, request):
+        imagePacks = ImagePack.objects.filter(membership__user=self.request.user)
+        serializer = ImagePackSerializer(imagePacks, many=True)
+        return Response(serializer.data)

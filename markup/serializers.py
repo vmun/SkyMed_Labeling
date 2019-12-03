@@ -55,25 +55,34 @@ class SubFolderSerializer(serializers.ModelSerializer):
 
 class FolderSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    allowed = serializers.SerializerMethodField()
 
     class Meta:
         model = Folder
-        fields = ('id', 'name', 'description', 'type', 'parent', 'allowed')
+        fields = ('id', 'name', 'description', 'parent')
 
-    def get_allowed(self, obj):
-        print(obj)
-        print(obj.id)
-        user = self.context['request'].user
-        subfolders = Folder.objects.filter(
-            parent=obj, participants=user
-        )
-        print(subfolders)
-        return SubFolderSerializer(
-            subfolders,
-            many=True,
-            context={'request': self.context['request']}
-        ).data
+
+class ImagePackSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    # allowed = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Folder
+        fields = ('id', 'name', 'description', 'parent')
+
+    # def get_allowed(self, obj):
+    #     pass
+    #     # print(obj)
+    #     # print(obj.id)
+    #     # user = self.context['request'].user
+    #     # subfolders = Folder.objects.filter(
+    #     #     parent=obj, participants=user
+    #     # )
+    #     # print(subfolders)
+    #     # return SubFolderSerializer(
+    #     #     subfolders,
+    #     #     many=True,
+    #     #     context={'request': self.context['request']}
+    #     # ).data
 
 
 class AdminFolderSerializer(serializers.ModelSerializer):
@@ -84,12 +93,12 @@ class AdminFolderSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'description', 'type', 'parent')
 
 
-class AllowedFolderSerializer(serializers.ModelSerializer):
+class AllowedImagePackSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
 
     class Meta:
-        model = AllowedFolder
-        fields = ('id', 'user', 'folder',)
+        model = AllowedImagePack
+        fields = ('id', 'user', 'imagePack',)
 
 
 class LabelSerializer(serializers.ModelSerializer):

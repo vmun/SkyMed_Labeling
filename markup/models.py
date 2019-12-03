@@ -7,7 +7,7 @@ from markup.utils.validators import *
 
 class MainUser(AbstractUser):
     role = models.IntegerField(choices=ROLES, default=GUEST)
-    folders = models.ManyToManyField('Folder', through='AllowedFolder', related_name='participants')
+    # folders = models.ManyToManyField('Folder', through='AllowedFolder', related_name='participants')
 
     class Meta:
         verbose_name = 'User'
@@ -36,27 +36,39 @@ class Profile(models.Model):
         return self.user.username
 
 
-class Folder(models.Model):
+class Container(models.Model):
     name = models.CharField(max_length=200, unique=True)
     description = models.CharField(max_length=2000)
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='subfolders', blank=True,
-                               null=True)  # parent
-    type = models.IntegerField(choices=FOLDER_TYPES, default=ROOT)
 
     class Meta:
-        verbose_name = 'Folder'
-        verbose_name_plural = 'Folders'
+        abstract = True
 
     def __str__(self):
         return f'{self.id}:{self.name}'
 
 
-class AllowedFolder(models.Model):
-    user = models.ForeignKey(MainUser, on_delete=models.CASCADE, related_name="membership")
-    folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name="membership")
+class Folder(Container):
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='subfolders', blank=True, null=True)
 
     class Meta:
-        unique_together = ('user', 'folder',)
+        verbose_name = 'Folder'
+        verbose_name_plural = 'Folders'
+
+
+class ImagePack(Container):
+    parent = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='imagePack')
+    # allowed
+    class Meta:
+        verbose_name = 'Image Pack'
+        verbose_name_plural = 'Image Packs'
+
+
+class AllowedImagePack(models.Model):
+    user = models.ForeignKey(MainUser, on_delete=models.CASCADE, related_name="member")
+    imagePack = models.ForeignKey(ImagePack, on_delete=models.CASCADE, related_name="membership")
+
+    class Meta:
+        unique_together = ('user', 'imagePack')
 
 
 class Image(models.Model):

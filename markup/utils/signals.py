@@ -23,10 +23,17 @@ def folder_created(sender, instance, created, **kwargs):
         actions_logger.info(f"Folder {instance} created!\n")
 
 
-@receiver(post_save, sender=AllowedFolder)
+@receiver(post_save, sender=ImagePack)
+def imagePack_created(sender, instance, created, **kwargs):
+    if created:
+        actions_logger.info(f"ImagePack {instance} created!\n")
+        AllowedImagePack.objects.create(imagePack=instance, user=MainUser.objects.get(id=1))
+
+
+@receiver(post_save, sender=AllowedImagePack)
 def permission_created(sender, instance, created, **kwargs):
     if created:
-        actions_logger.info(f"{instance.user} was given access to {instance.folder}!\n")
+        actions_logger.info(f"{instance.user} was given access to {instance.imagePack}!\n")
 
 
 @receiver(post_delete, sender=Image)
