@@ -19,14 +19,14 @@ schema_view = get_schema_view(
 
 urlpatterns = [
 
-    path('token/', obtain_jwt_token, name='api_token_auth'),
+    path('login/', obtain_jwt_token, name='api_token_auth'),
     path('token-refresh/', refresh_jwt_token, name='api_token_refresh'),
+    path('register/', views.register),
     url(r'^help/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 
-    path('register/', views.register),
     path('polygon/', views.PolygonList.as_view()),  # Add polygons
     path('polygon/<int:pk>/', views.PolygonDetail.as_view()),  # Delete polygon at PK
-    path('folders/<int:pk>/', views.ImageList.as_view()),  # Show images in category PK
+    # path('image_packs/<int:pk>/', views.ImageList.as_view()),  # Show images in category PK
     path('image/<int:pk>/polygons/', views.PolygonsInImage.as_view()),  # Show polygons in image PK
     path('comment/', views.CommentList.as_view()),  # Add comments
     path('comment/<int:pk>/', views.CommentDetail.as_view()),  # Delete/show comment at PK
@@ -37,8 +37,8 @@ urlpatterns = [
 router = routers.DefaultRouter()
 router.register('folders', views.FolderViewSet, base_name='folders')
 router.register('image_packs', views.ImagePackViewSet, base_name='image_packs')
+router.register('allow_pack', views.AllowedImagePackViewSet, base_name='allow_pack')
 # router.register('images', views.ImageViewSet, base_name='images')
-# router.register('allowed_folders', views.AllowedFolderViewSet, base_name='allowed_folders')
 # router.register('polygons', views.PolygonViewSet, base_name='polygons')
 # router.register('labels', views.LabelViewSet, base_name='labels')
 # router.register('comments', views.CommentViewSet, base_name='comments')

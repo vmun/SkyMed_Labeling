@@ -37,10 +37,10 @@ class ImageList(generics.ListAPIView):
 
     def get_queryset(self):
         try:
-            folder = Folder.objects.get(id=self.kwargs.get('pk'))
+            imagePack = ImagePack.objects.get(id=self.kwargs.get('pk'))
         except Folder.DoesNotExist:
             raise Http404
-        queryset = folder.images.all()
+        queryset = imagePack.images.all()
 
         return queryset
 

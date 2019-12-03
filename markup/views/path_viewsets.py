@@ -47,3 +47,20 @@ class ImagePackViewSet(viewsets.ModelViewSet):
         allowed_folders = Folder.objects.filter(id__in=allowed_folders)
         serializer = FolderSerializer(allowed_folders, many=True)
         return Response(serializer.data)
+
+    @action(methods=['GET'], detail=True)
+    def images(self, request, pk):
+        try:
+            ImagePack.objects.get(membership__user=self.request.user, id=pk)
+        except Exception:
+            return Response("not allowed")
+
+        images = Image.objects.filter(imagePack=pk)
+        serializer = ImageSerializer(images, many=True)
+        return Response(serializer.data)
+
+
+class AllowedImagePackViewSet(viewsets.ModelViewSet):
+    serializer_class = AllowedImagePackSerializer
+    permission_classes = (IsAdminUser,)
+    queryset = AllowedImagePack.objects.all()

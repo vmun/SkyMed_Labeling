@@ -2,7 +2,7 @@ import os
 
 from rest_framework.exceptions import ValidationError
 
-ALLOWED_EXTENSIONS = ['.jpg', '.png', ]
+ALLOWED_EXTENSIONS = ['.jpg', '.png', '.jpeg']
 
 def validate_file_size(value):
     if value.size > 20000000:

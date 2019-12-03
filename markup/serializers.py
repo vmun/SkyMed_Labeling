@@ -110,17 +110,17 @@ class PolygonSerializer(serializers.ModelSerializer):
 
 class ImageSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    extra = serializers.SerializerMethodField()
+    # extra = serializers.SerializerMethodField()
 
     class Meta:
         model = Image
-        fields = ('id', 'name', 'file', 'extra')
+        fields = ('id', 'name', 'file')
 
-    def get_extra(self, obj):
-        polygons = obj.polygons.filter(created_by=self.context.get('request').user)
-        if polygons:
-            return True
-        return False
+    # def get_extra(self, obj):
+    #     polygons = obj.polygons.filter(created_by=self.context.get('request').user)
+    #     if polygons:
+    #         return True
+    #     return False
 
 
 class CommentSerializer(serializers.ModelSerializer):

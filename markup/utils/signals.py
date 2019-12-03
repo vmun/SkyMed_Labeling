@@ -15,7 +15,7 @@ def user_created(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
         user_logger.info(f"{instance} registered!\n")
-    elif instance:
+    if instance:
         if instance.is_superuser:
             imagePacks = ImagePack.objects.all()
             for pack in imagePacks:

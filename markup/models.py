@@ -36,6 +36,7 @@ class Profile(models.Model):
         return self.user.username
 
 
+# abstract model for folders and imagePacks
 class HierarchyElement(models.Model):
     name = models.CharField(max_length=200, unique=True)
     description = models.CharField(max_length=2000)
@@ -90,7 +91,6 @@ class Label(models.Model):
 
 class Attachments(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
-    text = models.CharField(max_length=3000)
     created_by = models.ForeignKey(MainUser, on_delete=models.CASCADE, default=1)
 
     class Meta:
@@ -104,6 +104,7 @@ class PolygonManager(models.Manager):
 
 class Polygon(Attachments):
     label = models.ForeignKey(Label, on_delete=models.CASCADE, default=1)
+    text = models.CharField(max_length=3000, blank=True)
     points = models.CharField(max_length=1000)
     image = models.ForeignKey(Image, on_delete=models.CASCADE, default=1, related_name='polygons')
     objects = PolygonManager()
@@ -128,6 +129,7 @@ class CommentManager(models.Manager):
 
 
 class Comment(Attachments):
+    text = models.CharField(max_length=3000)
     image = models.ForeignKey(Image, on_delete=models.CASCADE, default=1, related_name='comments')
     objects = CommentManager()
 

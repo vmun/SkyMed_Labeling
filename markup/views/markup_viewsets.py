@@ -19,6 +19,9 @@ class ImageViewSet(viewsets.ModelViewSet):
     @action(methods=['GET'], detail=True)
     def polygons(self, request, pk):
         # permission: admin
+        self.permission_classes = (IsAdminUser,)
+        self.check_permissions(request)
+
         polygons = Image.objects.get(id=pk).polygons.all()
         serializer = ImageSerializer(polygons, many=True)
         return Response(serializer.data)
@@ -26,6 +29,7 @@ class ImageViewSet(viewsets.ModelViewSet):
     @action(methods=['GET'], detail=True)
     def my_polygons(self, request, pk):
         # permission: auth
+
         polygons = Image.objects.get(id=pk).polygons.filter(created_by=self.request.user)
         serializer = ImageSerializer(polygons, many=True)
         return Response(serializer.data)
@@ -33,13 +37,17 @@ class ImageViewSet(viewsets.ModelViewSet):
     @action(methods=['GET'], detail=True)
     def comments(self, request, pk):
         # permission: admin
+        self.permission_classes = (IsAdminUser,)
+        self.check_permissions(request)
+
         comments = Image.objects.get(id=pk).comments.all()
         serializer = FolderSerializer(comments, many=True)
         return Response(serializer.data)
 
     @action(methods=['GET'], detail=True)
     def my_comment(self, request, pk):
-        # permission: admin
+        # permission: auth
+
         comment = Image.objects.get(id=pk).comments.get(created_by=self.request.user)
         serializer = FolderSerializer(comment)
         return Response(serializer.data)
