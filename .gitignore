@@ -142,7 +142,8 @@ coverage.xml
 *.log
 local_settings.py
 db.sqlite3
-media/
+media/markup/
+media/profiles/
 
 # Flask stuff:
 instance/

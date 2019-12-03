@@ -34,19 +34,19 @@ class AllowedImagePackAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'file', 'folder_name', 'folder_id')
+    list_display = ('id', 'name', 'file', 'imagePack_name', 'imagePack_id')
 
-    def folder_name(self, obj):
-        return obj.folder.name
+    def imagePack_name(self, obj):
+        return obj.imagePack.name
 
-    def folder_id(self, obj):
-        return obj.folder.id
+    def imagePack_id(self, obj):
+        return obj.imagePack.id
 
-    folder_name.admin_order_field = 'Folder name'  # Allows column order sorting
-    folder_name.short_description = 'Folder Name'  # Renames column head
+    imagePack_name.admin_order_field = 'Image Pack name'  # Allows column order sorting
+    imagePack_name.short_description = 'Image Pack Name'  # Renames column head
 
-    folder_id.admin_order_field = 'Folder id'  # Allows column order sorting
-    folder_id.short_description = 'Folder id'  # Renames column head
+    imagePack_id.admin_order_field = 'Image Pack id'  # Allows column order sorting
+    imagePack_id.short_description = 'Image Pack id'  # Renames column head
 
 
 @admin.register(Polygon)
