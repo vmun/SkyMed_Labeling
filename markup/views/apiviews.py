@@ -3,6 +3,7 @@ from markup.serializers import *
 from rest_framework import generics
 from django.http import Http404
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
 
 class PolygonList(generics.CreateAPIView):

@@ -16,31 +16,8 @@ class FolderViewSet(mixins.RetrieveModelMixin,
                     mixins.ListModelMixin,
                     viewsets.GenericViewSet):
     serializer_class = FolderSerializer
-    permission_classes = (IsAuthenticated,)
-
-    def get_queryset(self):
-        if self.action in ['list', ]:
-            return Folder.objects.filter(Q(participants=self.request.user) & Q(type=ROOT) & Q(parent=None))
-        else:
-            return Folder.objects.filter(participants=self.request.user)
-
-    # @action(methods=['GET'], detail=True)
-    # def images(self, request, pk):
-    #     folder = Folder.objects.get(id=pk).prefetch_related('images')
-    #     images = folder.images
-    #     print(images)
-    #     serializer = ImageSerializer(data=images)
-    #
-    #     if serializer.is_valid():
-    #         print(serializer.data)
-    #         return Response(serializer.data)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class AllowedFolderViewSet(viewsets.ModelViewSet):
-    queryset = AllowedImagePack.objects.all()
-    serializer_class = AllowedImagePackSerializer
     permission_classes = (IsAdminUser,)
+    queryset = Folder.objects.all()
 
 
 class ImagePackViewSet(viewsets.ModelViewSet):
@@ -52,6 +29,11 @@ class ImagePackViewSet(viewsets.ModelViewSet):
         self.check_permissions(self.request)
         return ImagePack.objects.all()
 
+    @action(methods=['GET'], detail=False)
+    def allowed(self, request):
+        imagePacks = ImagePack.objects.filter(membership__user=self.request.user)
+        serializer = ImagePackSerializer(imagePacks, many=True)
+        return Response(serializer.data)
 
     @action(methods=['GET'], detail=False)
     def allowed_folders(self, request):
@@ -64,10 +46,4 @@ class ImagePackViewSet(viewsets.ModelViewSet):
                 folder = folder.parent
         allowed_folders = Folder.objects.filter(id__in=allowed_folders)
         serializer = FolderSerializer(allowed_folders, many=True)
-        return Response(serializer.data)
-
-    @action(methods=['GET'], detail=False)
-    def allowed(self, request):
-        imagePacks = ImagePack.objects.filter(membership__user=self.request.user)
-        serializer = ImagePackSerializer(imagePacks, many=True)
         return Response(serializer.data)

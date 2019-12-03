@@ -15,6 +15,11 @@ def user_created(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
         user_logger.info(f"{instance} registered!\n")
+    elif instance:
+        if instance.is_superuser:
+            imagePacks = ImagePack.objects.all()
+            for pack in imagePacks:
+                AllowedImagePack.objects.create(imagePack=pack, user=instance)
 
 
 @receiver(post_save, sender=Folder)
@@ -27,7 +32,9 @@ def folder_created(sender, instance, created, **kwargs):
 def imagePack_created(sender, instance, created, **kwargs):
     if created:
         actions_logger.info(f"ImagePack {instance} created!\n")
-        AllowedImagePack.objects.create(imagePack=instance, user=MainUser.objects.get(id=1))
+        superusers = MainUser.objects.filter(is_superuser=True)
+        for superuser in superusers:
+            AllowedImagePack.objects.create(imagePack=instance, user=superuser)
 
 
 @receiver(post_save, sender=AllowedImagePack)

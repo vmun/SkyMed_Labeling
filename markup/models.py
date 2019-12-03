@@ -36,7 +36,7 @@ class Profile(models.Model):
         return self.user.username
 
 
-class Container(models.Model):
+class HierarchyElement(models.Model):
     name = models.CharField(max_length=200, unique=True)
     description = models.CharField(max_length=2000)
 
@@ -47,7 +47,7 @@ class Container(models.Model):
         return f'{self.id}:{self.name}'
 
 
-class Folder(Container):
+class Folder(HierarchyElement):
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='subfolders', blank=True, null=True)
 
     class Meta:
@@ -55,14 +55,15 @@ class Folder(Container):
         verbose_name_plural = 'Folders'
 
 
-class ImagePack(Container):
+class ImagePack(HierarchyElement):
     parent = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='imagePack')
-    # allowed
+
     class Meta:
         verbose_name = 'Image Pack'
         verbose_name_plural = 'Image Packs'
 
 
+# Many to Many relation
 class AllowedImagePack(models.Model):
     user = models.ForeignKey(MainUser, on_delete=models.CASCADE, related_name="member")
     imagePack = models.ForeignKey(ImagePack, on_delete=models.CASCADE, related_name="membership")
@@ -73,7 +74,7 @@ class AllowedImagePack(models.Model):
 
 class Image(models.Model):
     name = models.CharField(max_length=150)
-    folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='images')
+    imagePack = models.ForeignKey(ImagePack, on_delete=models.CASCADE, related_name='images')
     file = models.FileField(upload_to=task_document_path, validators=[validate_file_size, validate_extension])
 
     def __str__(self):

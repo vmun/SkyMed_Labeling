@@ -3,6 +3,7 @@ from django.urls import path
 from markup import views
 
 urlpatterns = [
+    path('register/', views.register),
     path('polygon/', views.PolygonList.as_view()),  # Add polygons
     path('polygon/<int:pk>/', views.PolygonDetail.as_view()),  # Delete polygon at PK
     path('folders/<int:pk>/', views.ImageList.as_view()),  # Show images in category PK

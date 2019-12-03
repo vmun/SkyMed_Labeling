@@ -23,6 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
         user = MainUser.objects.create_user(**validated_data)
         return user
 
+
 class PasswordSerializer(serializers.Serializer):
     """
     Serializer for password change endpoint.
@@ -63,26 +64,10 @@ class FolderSerializer(serializers.ModelSerializer):
 
 class ImagePackSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    # allowed = serializers.SerializerMethodField()
 
     class Meta:
         model = Folder
         fields = ('id', 'name', 'description', 'parent')
-
-    # def get_allowed(self, obj):
-    #     pass
-    #     # print(obj)
-    #     # print(obj.id)
-    #     # user = self.context['request'].user
-    #     # subfolders = Folder.objects.filter(
-    #     #     parent=obj, participants=user
-    #     # )
-    #     # print(subfolders)
-    #     # return SubFolderSerializer(
-    #     #     subfolders,
-    #     #     many=True,
-    #     #     context={'request': self.context['request']}
-    #     # ).data
 
 
 class AdminFolderSerializer(serializers.ModelSerializer):
