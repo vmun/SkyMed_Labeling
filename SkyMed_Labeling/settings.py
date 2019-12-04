@@ -54,11 +54,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = [
-    "http://127.0.0.1:4200",
-    "http://127.0.0.1:8000",
-]
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = [
+#     "http://127.0.0.1:4200",
+#     "http://127.0.0.1:8000",
+# ]
 ROOT_URLCONF = 'SkyMed_Labeling.urls'
 
 TEMPLATES = [
@@ -160,7 +160,7 @@ JWT_AUTH = {
     'JWT_VERIFY': True,
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_LEEWAY': 0,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=700),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=7),
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
 

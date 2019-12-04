@@ -102,7 +102,8 @@ class PolygonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Polygon
-        fields = ('id', 'name', 'label', 'text', 'points', 'image')
+        fields = ('id', 'name', 'label', 'text', 'points', 'image',)
+        read_only_fields = ('date_created',)
 
     def get_name(self, obj):
         return obj.label.name
