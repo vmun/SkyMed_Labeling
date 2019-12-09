@@ -98,11 +98,11 @@ class LabelSerializer(serializers.ModelSerializer):
 class PolygonSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     text = serializers.CharField(required=False, allow_blank=True)
-    name = serializers.SerializerMethodField()
+    # name = serializers.SerializerMethodField()
 
     class Meta:
         model = Polygon
-        fields = ('id', 'name', 'label', 'text', 'points', 'image',)
+        fields = ('id', 'label', 'text', 'points', 'image',)
         read_only_fields = ('date_created',)
 
     def get_name(self, obj):

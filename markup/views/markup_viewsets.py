@@ -31,7 +31,7 @@ class ImageViewSet(viewsets.ModelViewSet):
         # permission: auth
 
         polygons = Image.objects.get(id=pk).polygons.filter(created_by=self.request.user)
-        serializer = ImageSerializer(polygons, many=True)
+        serializer = PolygonSerializer(polygons, many=True)
         return Response(serializer.data)
 
     @action(methods=['GET'], detail=True)
