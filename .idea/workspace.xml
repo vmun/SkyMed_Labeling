@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="af9986d4-2bbe-4207-a4cc-74a070d02fd8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkyMed_Labeling/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/SkyMed_Labeling/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/migrations/0002_auto_20191204_1205.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/markup/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/markup/serializers.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +121,16 @@
       <workItem from="1575043565081" duration="15128000" />
       <workItem from="1575439406276" duration="811000" />
       <workItem from="1575447504740" duration="191000" />
-      <workItem from="1575449556086" duration="896000" />
+      <workItem from="1575449556086" duration="1490000" />
+      <workItem from="1575707809052" duration="2470000" />
+      <workItem from="1575806025274" duration="819000" />
+      <workItem from="1575812215099" duration="1190000" />
+      <workItem from="1575818796094" duration="5949000" />
+      <workItem from="1575891931964" duration="2106000" />
+      <workItem from="1576050385421" duration="1721000" />
+      <workItem from="1576058123240" duration="2212000" />
+      <workItem from="1576125094887" duration="1186000" />
+      <workItem from="1576143167039" duration="891000" />
     </task>
     <servers />
   </component>
