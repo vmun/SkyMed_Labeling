@@ -27,10 +27,10 @@ urlpatterns = [
     path('polygon/', views.PolygonList.as_view()),  # Add polygons
     path('polygon/<int:pk>/', views.PolygonDetail.as_view()),  # Delete polygon at PK
     # path('image_packs/<int:pk>/', views.ImageList.as_view()),  # Show images in category PK
-    path('image/<int:pk>/polygons/', views.PolygonsInImage.as_view()),  # Show polygons in image PK
+    # path('image/<int:pk>/polygons/', views.PolygonsInImage.as_view()),  # Show polygons in image PK
     path('comment/', views.CommentList.as_view()),  # Add comments
     path('comment/<int:pk>/', views.CommentDetail.as_view()),  # Delete/show comment at PK
-    path('image/<int:pk>/comments/', views.CommentsInImage.as_view()),  # Show comments in image PK
+    # path('image/<int:pk>/comments/', views.CommentsInImage.as_view()),  # Show comments in image PK
     path('labels/', views.LabelList.as_view()),  # lists labels
 ]
 
@@ -38,7 +38,7 @@ router = routers.DefaultRouter()
 router.register('folders', views.FolderViewSet, base_name='folders')
 router.register('image_packs', views.ImagePackViewSet, base_name='image_packs')
 router.register('allow_pack', views.AllowedImagePackViewSet, base_name='allow_pack')
-# router.register('images', views.ImageViewSet, base_name='images')
+router.register('images', views.ImageViewSet, base_name='images')
 # router.register('polygons', views.PolygonViewSet, base_name='polygons')
 # router.register('labels', views.LabelViewSet, base_name='labels')
 # router.register('comments', views.CommentViewSet, base_name='comments')
